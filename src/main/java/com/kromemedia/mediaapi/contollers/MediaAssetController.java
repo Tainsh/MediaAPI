@@ -22,7 +22,7 @@ public class MediaAssetController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     @CrossOrigin
     public ResponseEntity<Collection<MediaAsset>> findAll() {
         HttpHeaders headers = new HttpHeaders();
@@ -38,12 +38,14 @@ public class MediaAssetController {
         return new ResponseEntity<>(service.findById(id), headers, HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @CrossOrigin
     public ResponseEntity<MediaAsset> create(@RequestBody MediaAsset options) throws Exception {
         HttpHeaders headers = new HttpHeaders();
 
-        return new ResponseEntity<>(service.create(options), headers, HttpStatus.OK);
+        MediaAsset asset = service.create(options);
+
+        return new ResponseEntity<>(asset, headers, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
